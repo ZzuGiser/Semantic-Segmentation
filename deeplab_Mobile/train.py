@@ -60,9 +60,10 @@ if __name__ == "__main__":
     model = Deeplabv3(classes=2,input_shape=(HEIGHT,WIDTH,3))
     # model.summary()
 
-    weights_path = get_file('deeplabv3_mobilenetv2_tf_dim_ordering_tf_kernels.h5',
-                                    WEIGHTS_PATH_MOBILE,
-                                    cache_subdir='models')
+    # weights_path = get_file('deeplabv3_mobilenetv2_tf_dim_ordering_tf_kernels.h5',
+    #                                 WEIGHTS_PATH_MOBILE,
+    #                                 cache_subdir='models')
+    weights_path = "./models/deeplabv3_mobilenetv2_tf_dim_ordering_tf_kernels.h5"
     # model.load_weights(weights_path,by_name=True,skip_mismatch=True)
     model.load_weights(weights_path,by_name=True,skip_mismatch=True)
     # 打开数据集的txt
