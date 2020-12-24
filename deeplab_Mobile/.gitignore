@@ -5,6 +5,7 @@ logs/
 building_img/
 building_img_out/
 dataset2/
+results/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
