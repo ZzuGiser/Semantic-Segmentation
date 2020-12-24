@@ -19,7 +19,7 @@ SHPPATH = "../tif_and_shp/image_building/guangzhou_mask.tif"
 SAVEPATH = "./deeplab_Mobile/dataset2/"
 CROPSIZE = 256
 REPETITIONRATE = 0.1
-ALL_IMAGE_NUM = 100
+ALL_IMAGE_NUM = 10000
 
 
 class TifSample(object):

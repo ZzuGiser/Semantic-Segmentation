@@ -29,7 +29,7 @@ def generate_arrays_from_file(lines,batch_size):
                 np.random.shuffle(lines)
             name = lines[i].split(';')[0]
             # 从文件中读取图像
-            img = Image.open(r".\dataset2\jpg" + '/' + name)
+            img = Image.open(r"./dataset2/jpg" + '/' + name)
             img = img.resize((WIDTH,HEIGHT))
             img = np.array(img)
             img = img/255
@@ -37,7 +37,7 @@ def generate_arrays_from_file(lines,batch_size):
 
             name = (lines[i].split(';')[1]).replace("\n", "")
             # 从文件中读取图像
-            img = Image.open(r".\dataset2\png" + '/' + name)
+            img = Image.open(r"./dataset2/png" + '/' + name)
             img = img.resize((int(WIDTH),int(HEIGHT)))
             img = np.array(img)
             seg_labels = np.zeros((int(HEIGHT),int(WIDTH),NCLASSES))
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # model.load_weights(weights_path,by_name=True,skip_mismatch=True)
     model.load_weights(weights_path,by_name=True,skip_mismatch=True)
     # 打开数据集的txt
-    with open(r".\dataset2\train.txt","r") as f:
+    with open(r"./dataset2/train.txt","r") as f:
         lines = f.readlines()
 
     # 打乱行，这个txt主要用于帮助读取数据来训练
@@ -107,7 +107,7 @@ if __name__ == "__main__":
     model.compile(loss = loss,
             optimizer = Adam(lr=1e-4),
             metrics = ['accuracy'])
-    batch_size = 4
+    batch_size = 1
     print('Train on {} samples, val on {} samples, with batch size {}.'.format(num_train, num_val, batch_size))
     # 开始训练
     model.fit_generator(generate_arrays_from_file(lines[:num_train], batch_size),

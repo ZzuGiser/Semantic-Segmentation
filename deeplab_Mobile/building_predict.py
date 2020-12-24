@@ -11,12 +11,12 @@ HEIGHT = 416
 WIDTH = 416
 
 model = model = Deeplabv3(classes=2, input_shape=(HEIGHT, WIDTH, 3))
-model.load_weights("logs/ep015-loss0.052-val_loss0.100.h5")
-imgs = os.listdir("./img")
+model.load_weights("logs/last1.h5")
+imgs = os.listdir("./building_img")
 
 for jpg in imgs:
 
-    img = Image.open("./img/" + jpg)
+    img = Image.open("./building_img/" + jpg)
     old_img = copy.deepcopy(img)
     orininal_h = np.array(img).shape[0]
     orininal_w = np.array(img).shape[1]
@@ -40,4 +40,4 @@ for jpg in imgs:
     seg_img = Image.fromarray(np.uint8(seg_img)).resize((orininal_w, orininal_h))
 
     image = Image.blend(old_img, seg_img, 0.3)
-    image.save("./img_out/" + jpg)
+    image.save("./building_img_out/" + jpg)
