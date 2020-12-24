@@ -98,6 +98,10 @@ class TifSample(object):
                                   i * CropSize * (1 - RepetitionRate)) + CropSize,
                               int(j * CropSize * (1 - RepetitionRate)): int(
                                   j * CropSize * (1 - RepetitionRate)) + CropSize]
+                for c_i in range(len(cropped_shp)):
+                    for r_j in range(len(cropped_shp[0])):
+                        if cropped_shp[c_i][r_j] == 255:
+                            cropped_shp[c_i][r_j] = 0
                 color = int(np.sum(cropped) / (CropSize * CropSize))
                 if color < 70: continue
                 img_name = "{:d}_{:d}_{:d}.jpg".format(self.img_num, j + CropSize // 2, i + CropSize // 2)
