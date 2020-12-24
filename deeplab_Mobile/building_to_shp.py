@@ -139,6 +139,7 @@ class Remote2Shp(object):
             else:
                 image = np.stack(image, axis=2)
             w, h, _ = image.shape  # w = 400,h = 400
+            self.handle_img(image, oLayer,[row, col], tif_tran,shp_i)
 
             # results = model.detect([image], verbose=1)
             # # Visualize results
