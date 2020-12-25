@@ -138,7 +138,7 @@ class Remote2Shp(object):
                 image = np.concatenate((image, image, image), axis=2)
             else:
                 image = np.stack(image, axis=2)
-            w, h, _ = image.shape  # w = 400,h = 400
+
             self.handle_img(image, oLayer,[row, col], tif_tran,shp_i)
 
             # results = model.detect([image], verbose=1)
@@ -153,6 +153,8 @@ class Remote2Shp(object):
         print("数据集创建完成！\n")
 
     def handle_img(self, img, oLayer,origin_point, tif_tran,shp_i):
+        w, h, _ = img.shape  # w = 400,h = 400
+        img = img.reshape(-1, h, w, 3)
         pr = self.model.predict(img)[0]
         pr = pr.reshape((int(HEIGHT), int(WIDTH), NCLASSES)).argmax(axis=-1)
         # seg_img = np.zeros((int(HEIGHT), int(WIDTH), 3))

@@ -119,7 +119,7 @@ class TifSample(object):
 
 
 if __name__ == '__main__':
-    output_pack = '{:%Y%m%d_%H%M}_road_accuracy'.format(datetime.datetime.now())
+    output_pack = '{:%Y%m%d_%H%M}_building_sample'.format(datetime.datetime.now())
     output_path = os.path.join(SAVEPATH, output_pack)
     if not os.path.exists(output_path):
         os.makedirs(output_path)
