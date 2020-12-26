@@ -33,7 +33,7 @@ sys.path.append(ROOT_DIR)  # To find local version of the library
 # Download COCO trained weights from Releases if needed
 TIF_PATH = "../../tif_and_shp/CJ2.tif"
 SHP_PATH = "../../tif_and_shp/shp_building/guangzhou.shp"
-CROP_SIZE = 200
+CROP_SIZE = 416
 NEW_SHP_NAME = 'building_detect.shp'
 ALL_NUM = 10000
 CLASS_NAMES = ['not_defined', 'building']
@@ -140,6 +140,7 @@ class Remote2Shp(object):
                 image = np.stack(image, axis=2)
 
             self.handle_img(image, oLayer,[row, col], tif_tran,shp_i)
+            logging.info("now handle img id :{:d}".format(shp_i))
 
             # results = model.detect([image], verbose=1)
             # # Visualize results
@@ -228,10 +229,6 @@ if __name__ == '__main__':
     output_path = os.path.join(OUTPUT_PATH, output_pack)
     if not os.path.exists(output_path):
         os.makedirs(output_path)
-    logging.basicConfig(level=logging.INFO,
-                        format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-                        datefmt='%a, %d %b %Y %H:%M:%S',
-                        filename=os.path.join(output_path, 'a_reslut.log'),
-                        filemode='w')
+    logging.basicConfig(level=logging.INFO)
     remote2shp = Remote2Shp(output_path=output_path)
     remote2shp.remote2Shp()
